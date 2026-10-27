@@ -8,6 +8,10 @@
     "typecheck": {
       "dependsOn": ["^build"]
     },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/.oxlintrc.json"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
