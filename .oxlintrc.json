@@ -8,7 +8,7 @@
   "options": {
     "typeAware": true
   },
-  "ignorePatterns": ["**/dist/**"],
+  "ignorePatterns": ["**/dist/**", "**/routeTree.gen.ts"],
   "rules": {
     "typescript/no-explicit-any": "error",
     "typescript/no-unsafe-argument": "error",
@@ -34,8 +34,22 @@
         "react/rules-of-hooks": "error",
         "react/exhaustive-deps": "error",
         "react/only-export-components": "error",
+        "react/react-in-jsx-scope": "off",
         "react/hooks": "off",
-        "react/exhaustive-effect-dependencies": "off"
+        "react/exhaustive-effect-dependencies": "off",
+        "import/no-unassigned-import": [
+          "error",
+          {
+            "allow": ["**/*.css", "@testing-library/jest-dom/vitest"]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["packages/web/src/routes/**"],
+      "plugins": ["react"],
+      "rules": {
+        "react/only-export-components": "off"
       }
     }
   ]

@@ -5,8 +5,8 @@
     "moduleResolution": "bundler",
     "lib": ["es2025", "dom", "dom.iterable"],
     "jsx": "react-jsx",
-    "types": [],
+    "types": ["vite/client"],
     "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src", "test-setup.ts"]
 }
