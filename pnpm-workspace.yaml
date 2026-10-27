@@ -4,3 +4,10 @@ packages:
 catalog:
   "@types/node": 26.6.5
   typescript: 7.0.2
+
+disallowWorkspaceCycles: true
+
+packageExtensions:
+  dependency-cruiser:
+    dependencies:
+      typescript: npm:@typescript/typescript6@6.0.2

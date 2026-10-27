@@ -9,12 +9,13 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "lint": "turbo run lint && depcruise packages",
     "typecheck": "turbo run typecheck",
     "format": "prettier . --write",
     "format:check": "prettier . --check"
   },
   "devDependencies": {
+    "dependency-cruiser": "18.7.0",
     "oxlint": "1.89.0",
     "oxlint-tsgolint": "7.0.2005",
     "prettier": "3.9.10",
