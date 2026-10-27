@@ -2,7 +2,14 @@
   "name": "@workdome/server",
   "private": true,
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
+    "dev": "node --watch src/main.ts",
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
@@ -12,5 +19,10 @@
     "@types/node": "catalog:",
     "@workdome/typescript-config": "workspace:*",
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@trpc/server": "11.19.0",
+    "fastify": "5.12.7",
+    "zod": "4.6.7"
   }
 }
