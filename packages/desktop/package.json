@@ -1,0 +1,13 @@
+{
+  "name": "@workdome/desktop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@workdome/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

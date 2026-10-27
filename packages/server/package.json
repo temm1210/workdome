@@ -1,0 +1,14 @@
+{
+  "name": "@workdome/server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@workdome/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "@workdome/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "nodenext",
+    "types": ["node"],
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true
+  },
+  "include": ["src"]
+}
