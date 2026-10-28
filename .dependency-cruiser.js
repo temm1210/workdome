@@ -8,10 +8,22 @@ export default {
       from: {},
       to: { circular: true },
     },
+    {
+      // Engine stays HTTP-agnostic (no Fastify/tRPC, no imports from the rest of server)
+      name: "framework-agnostic",
+      severity: "error",
+      from: { path: "^packages/server/src/engine/" },
+      to: {
+        path: [
+          "^packages/server/src/(?!engine/)",
+          "node_modules/(fastify|@fastify|@trpc)/",
+        ],
+      },
+    },
   ],
   options: {
     doNotFollow: { path: "node_modules" },
-    exclude: { path: "/dist/" },
+    exclude: { path: "^packages/[^/]+/dist/" },
     tsPreCompilationDeps: true,
   },
 };

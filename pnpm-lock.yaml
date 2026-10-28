@@ -217,18 +217,6 @@ importers:
         specifier: 'catalog:'
         version: 7.0.2
 
-  packages/engine:
-    devDependencies:
-      '@types/node':
-        specifier: 'catalog:'
-        version: 26.6.5
-      '@workdome/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      typescript:
-        specifier: 'catalog:'
-        version: 7.0.2
-
   packages/server:
     dependencies:
       '@trpc/server':
