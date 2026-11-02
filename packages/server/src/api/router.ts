@@ -1,7 +1,7 @@
 import { initTRPC } from "@trpc/server";
 import { z } from "zod";
 
-const t = initTRPC.create();
+const t = initTRPC.create({ isDev: false });
 
 export const appRouter = t.router({
   ping: t.procedure

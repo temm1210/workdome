@@ -4,23 +4,25 @@ import {
 } from "@trpc/server/adapters/fastify";
 import Fastify from "fastify";
 
-import { appRouter, type AppRouter } from "./router.ts";
-
-const HOST = "127.0.0.1";
-const PORT = 4310;
-const API_PREFIX = "/api";
-const MAX_URL_PARAM_LENGTH = 5000;
+import { appRouter, type AppRouter } from "./api/router.ts";
+import { handleError, handleNotFound, logError } from "./http/error.ts";
 
 const server = Fastify({
-  logger: true,
-  routerOptions: { maxParamLength: MAX_URL_PARAM_LENGTH },
+  logger: { redact: ["input.token", "input.password"] },
+  // tRPC batch paths exceed the default 100
+  routerOptions: { maxParamLength: 5000 },
+  frameworkErrors: handleError,
 });
 
+server.setErrorHandler(handleError);
+server.setNotFoundHandler(handleNotFound);
 await server.register(fastifyTRPCPlugin, {
-  prefix: API_PREFIX,
+  prefix: "/api",
   trpcOptions: {
     router: appRouter,
+    onError: ({ error, req, path, input }) =>
+      logError(req.log.child({ path, input }), error),
   } satisfies FastifyTRPCPluginOptions<AppRouter>["trpcOptions"],
 });
 
-await server.listen({ host: HOST, port: PORT });
+await server.listen({ host: "127.0.0.1", port: 4310 });
