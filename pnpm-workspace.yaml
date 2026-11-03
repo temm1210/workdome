@@ -3,6 +3,7 @@ packages:
 
 catalog:
   "@types/node": 26.6.5
+  tailwindcss: 4.3.3
   typescript: 7.0.2
 
 disallowWorkspaceCycles: true
