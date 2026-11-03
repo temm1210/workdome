@@ -6,7 +6,8 @@
     "lib": ["es2025", "dom", "dom.iterable"],
     "jsx": "react-jsx",
     "types": ["vite/client"],
-    "noEmit": true
+    "noEmit": true,
+    "paths": { "@/*": ["./src/*"] }
   },
   "include": ["src", "test-setup.ts"]
 }
