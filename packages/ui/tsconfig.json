@@ -1,0 +1,11 @@
+{
+  "extends": "@workdome/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["es2025", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "noEmit": true
+  },
+  "include": ["src", "test-setup.ts"]
+}
