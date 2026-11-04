@@ -4,3 +4,4 @@ coverage/
 .turbo/
 *.log
 .tanstack/
+test-results/

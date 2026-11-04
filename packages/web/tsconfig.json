@@ -9,5 +9,5 @@
     "noEmit": true,
     "paths": { "@/*": ["./src/*"] }
   },
-  "include": ["src", "test-setup.ts"]
+  "include": ["src", "test-setup.ts", "e2e"]
 }
