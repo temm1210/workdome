@@ -19,6 +19,8 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
+    "@babel/core": "8.1.0",
+    "@rolldown/plugin-babel": "0.2.4",
     "@tailwindcss/vite": "4.3.3",
     "@tanstack/router-plugin": "1.168.48",
     "@testing-library/dom": "catalog:",
@@ -30,6 +32,7 @@
     "@workdome/server": "workspace:*",
     "@workdome/typescript-config": "workspace:*",
     "@workdome/ui": "workspace:*",
+    "babel-plugin-react-compiler": "1.0.0",
     "jsdom": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
