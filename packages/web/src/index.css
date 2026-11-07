@@ -1,8 +1,2 @@
 @import "tailwindcss";
 @import "@workdome/ui/theme.css";
-
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
-}
