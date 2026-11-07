@@ -1,0 +1,4 @@
+{
+  "extends": "./packages/typescript-config/config-files.json",
+  "include": ["vitest.config.ts"]
+}

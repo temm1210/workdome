@@ -1,0 +1,9 @@
+{
+  "extends": "@workdome/typescript-config/config-files.json",
+  "include": [
+    "vite.config.ts",
+    "vite-plugins",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ]
+}

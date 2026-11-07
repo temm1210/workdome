@@ -10,7 +10,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint && depcruise packages",
-    "typecheck": "turbo run typecheck",
+    "typecheck": "turbo run typecheck && tsc -p tsconfig.node.json",
     "test": "turbo run test",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
@@ -26,6 +26,7 @@
     "oxlint-tsgolint": "7.0.2005",
     "prettier": "3.9.10",
     "turbo": "2.11.10",
+    "typescript": "catalog:",
     "vitest": "5.0.5"
   }
 }
