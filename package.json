@@ -15,7 +15,7 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "prepare": "husky",
-    "knip": "knip"
+    "knip": "knip --include dependencies"
   },
   "devDependencies": {
     "dependency-cruiser": "18.7.1",
