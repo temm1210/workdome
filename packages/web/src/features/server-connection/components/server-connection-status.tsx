@@ -1,6 +1,6 @@
 import type { ConnectionStatus } from "../types";
 
-type ServerConnectionStatusProps = { status: ConnectionStatus };
+export type ServerConnectionStatusProps = { status: ConnectionStatus };
 
 const label: Record<ConnectionStatus, string> = {
   connecting: "서버 연결 중",
