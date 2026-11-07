@@ -4,6 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { queryClient } from "@/lib/trpc";
+import { ColorModeProvider } from "@/providers/color-mode-provider";
 import "./index.css";
 import { routeTree } from "./routeTree.gen";
 
@@ -22,8 +23,10 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <ColorModeProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ColorModeProvider>
   </StrictMode>,
 );
