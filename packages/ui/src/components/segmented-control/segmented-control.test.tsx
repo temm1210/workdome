@@ -177,4 +177,132 @@ describe("SegmentedControl", () => {
     );
     expect(screen.getByRole("radio", { name: "첫째" })).toBeInTheDocument();
   });
+
+  it("disabled인 항목을 누르면 onValueChange를 부르지 않는다", async () => {
+    const options = [
+      { value: "a", label: "첫째" },
+      { value: "b", label: "둘째", disabled: true },
+    ];
+    const onValueChange = vi.fn();
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={onValueChange}
+      />,
+    );
+    await userEvent.click(screen.getByRole("radio", { name: "둘째" }));
+    expect(onValueChange).not.toHaveBeenCalled();
+  });
+
+  it("disabled인 항목만 꺼지고 나머지 항목은 누를 수 있다", async () => {
+    const options = [
+      { value: "a", label: "첫째" },
+      { value: "b", label: "둘째", disabled: true },
+      { value: "c", label: "셋째" },
+    ];
+    const onValueChange = vi.fn();
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={onValueChange}
+      />,
+    );
+    expect(screen.getByRole("radio", { name: "둘째" })).toBeDisabled();
+    expect(screen.getByRole("radio", { name: "셋째" })).toBeEnabled();
+    await userEvent.click(screen.getByRole("radio", { name: "셋째" }));
+    expect(onValueChange).toHaveBeenCalledWith("c");
+  });
+
+  it("화살표 키로 옮기면 disabled인 항목을 건너뛴다", async () => {
+    const options = [
+      { value: "a", label: "첫째" },
+      { value: "b", label: "둘째", disabled: true },
+      { value: "c", label: "셋째" },
+    ];
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={vi.fn()}
+      />,
+    );
+    await userEvent.tab();
+    await userEvent.keyboard("{ArrowRight}");
+    expect(screen.getByRole("radio", { name: "셋째" })).toHaveFocus();
+  });
+
+  it("선택된 항목이 disabled여도 선택되어 보이고 다른 항목을 누를 수 있다", async () => {
+    const options = [
+      { value: "a", label: "첫째", disabled: true },
+      { value: "b", label: "둘째" },
+    ];
+    const onValueChange = vi.fn();
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={onValueChange}
+      />,
+    );
+    expect(screen.getByRole("radio", { name: "첫째" })).toBeChecked();
+    await userEvent.click(screen.getByRole("radio", { name: "둘째" }));
+    expect(onValueChange).toHaveBeenCalledWith("b");
+  });
+
+  it("모든 항목이 disabled면 어느 항목을 눌러도 onValueChange를 부르지 않는다", async () => {
+    const options = [
+      { value: "a", label: "첫째", disabled: true },
+      { value: "b", label: "둘째", disabled: true },
+    ];
+    const onValueChange = vi.fn();
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={onValueChange}
+      />,
+    );
+    await userEvent.click(screen.getByRole("radio", { name: "둘째" }));
+    expect(onValueChange).not.toHaveBeenCalled();
+  });
+
+  it("컨트롤이 disabled면 disabled: false인 항목도 꺼진다", () => {
+    const options = [
+      { value: "a", label: "첫째" },
+      { value: "b", label: "둘째", disabled: false },
+    ];
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={vi.fn()}
+        disabled
+      />,
+    );
+    expect(screen.getByRole("radio", { name: "둘째" })).toBeDisabled();
+  });
+
+  it("disabled를 주지 않은 항목은 켜져 있다", () => {
+    const options = [
+      { value: "a", label: "첫째" },
+      { value: "b", label: "둘째" },
+    ];
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={vi.fn()}
+      />,
+    );
+    expect(screen.getByRole("radio", { name: "둘째" })).toBeEnabled();
+  });
 });
