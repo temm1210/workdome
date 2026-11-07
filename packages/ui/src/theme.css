@@ -5,7 +5,9 @@
   color-scheme: light;
   --background: var(--color-zinc-50);
   --foreground: var(--color-zinc-800);
-  --muted: var(--color-zinc-100);
+  --muted: var(--color-zinc-200);
+  --surface: var(--color-white);
+  --muted-hover: color-mix(in oklab, var(--muted), var(--surface) 50%);
   --muted-foreground: var(--color-zinc-500);
   --border: var(--color-zinc-200);
   --primary: var(--color-zinc-800);
@@ -17,6 +19,7 @@
   --background: var(--color-zinc-900);
   --foreground: var(--color-zinc-100);
   --muted: var(--color-zinc-800);
+  --surface: var(--color-zinc-700);
   --muted-foreground: var(--color-zinc-400);
   --border: var(--color-zinc-700);
   --primary: var(--color-zinc-200);
@@ -27,6 +30,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-muted-hover: var(--muted-hover);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-primary: var(--primary);
