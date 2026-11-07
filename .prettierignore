@@ -1,5 +1,6 @@
 pnpm-lock.yaml
 .claude/
+.claude-*/
 .vscode/
 CLAUDE.local.md
 routeTree.gen.ts
