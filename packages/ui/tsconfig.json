@@ -5,7 +5,8 @@
     "moduleResolution": "bundler",
     "lib": ["es2025", "dom", "dom.iterable"],
     "jsx": "react-jsx",
-    "noEmit": true
+    "noEmit": true,
+    "types": ["vite/client"]
   },
-  "include": ["src", ".storybook", "test-setup.ts"]
+  "include": ["src", ".storybook/**/*", "test-setup.ts"]
 }
