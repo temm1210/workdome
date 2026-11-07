@@ -154,4 +154,27 @@ describe("SegmentedControl", () => {
     await userEvent.keyboard(" ");
     expect(onValueChange).toHaveBeenCalledWith("b");
   });
+
+  it("label에 아이콘과 화면에 안 보이는 글자를 주면 그 글자를 항목 이름으로 읽는다", () => {
+    const options = [
+      {
+        value: "a",
+        label: (
+          <>
+            <svg aria-hidden="true" />
+            <span className="sr-only">첫째</span>
+          </>
+        ),
+      },
+    ];
+    render(
+      <SegmentedControl
+        aria-label="선택"
+        value="a"
+        options={options}
+        onValueChange={vi.fn()}
+      />,
+    );
+    expect(screen.getByRole("radio", { name: "첫째" })).toBeInTheDocument();
+  });
 });
