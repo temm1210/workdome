@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
-import { ColorModeContext } from "@/hooks/color-mode/color-mode-context";
+import { ColorModeContext } from "@/hooks/use-color-mode/color-mode-context";
 import {
   applyDocumentColorMode,
   getColorModeState,

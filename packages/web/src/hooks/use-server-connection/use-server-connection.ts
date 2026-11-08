@@ -1,7 +1,7 @@
 import { useEventsSubscription } from "@/queries/events";
 import type { UseEventsSubscriptionResult } from "@/queries/events";
 
-import type { ConnectionStatus } from "../types";
+import type { ConnectionStatus } from "./types";
 
 const connectionStatus: Record<
   UseEventsSubscriptionResult["status"],

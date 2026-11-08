@@ -1,5 +1,5 @@
-import { ServerConnectionStatus } from "@/features/server-connection/components/server-connection-status";
-import { useServerConnection } from "@/features/server-connection/hooks";
+import { ServerConnectionStatus } from "@/components/server-connection-status";
+import { useServerConnection } from "@/hooks";
 
 export function InboxPage() {
   const { status } = useServerConnection();

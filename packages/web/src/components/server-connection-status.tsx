@@ -1,4 +1,4 @@
-import type { ConnectionStatus } from "../types";
+import type { ConnectionStatus } from "@/hooks/use-server-connection/types";
 
 export type ServerConnectionStatusProps = { status: ConnectionStatus };
 
