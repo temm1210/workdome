@@ -1,12 +1,25 @@
-import { initTRPC } from "@trpc/server";
-import { z } from "zod";
+import { initTRPC, TRPCError } from "@trpc/server";
 
-const t = initTRPC.create({ isDev: false });
+import { appEvents } from "../engine/events/app-events.ts";
+
+const t = initTRPC.create({
+  isDev: false,
+  sse: {
+    ping: { enabled: true, intervalMs: 2000 },
+    client: { reconnectAfterInactivityMs: 5000 },
+  },
+});
 
 export const appRouter = t.router({
-  ping: t.procedure
-    .input(z.object({ message: z.string() }))
-    .query(({ input }) => ({ message: input.message })),
+  events: t.procedure.subscription(({ signal }) => {
+    if (!signal) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Subscriptions need an abort signal",
+      });
+    }
+    return appEvents.subscribe(signal);
+  }),
 });
 
 export type AppRouter = typeof appRouter;

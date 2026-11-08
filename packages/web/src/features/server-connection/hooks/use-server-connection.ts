@@ -1,18 +1,21 @@
-import { usePingQuery } from "@/queries/ping";
-import type { UsePingQueryResult } from "@/queries/ping";
+import { useEventsSubscription } from "@/queries/events";
+import type { UseEventsSubscriptionResult } from "@/queries/events";
 
 import type { ConnectionStatus } from "../types";
 
-const connectionStatus: Record<UsePingQueryResult["status"], ConnectionStatus> =
-  {
-    pending: "connecting",
-    success: "connected",
-    error: "disconnected",
-  };
+const connectionStatus: Record<
+  UseEventsSubscriptionResult["status"],
+  ConnectionStatus
+> = {
+  idle: "disconnected",
+  connecting: "connecting",
+  pending: "connected",
+  error: "disconnected",
+};
 
 export type UseServerConnectionResult = { status: ConnectionStatus };
 
 export function useServerConnection(): UseServerConnectionResult {
-  const query = usePingQuery();
-  return { status: connectionStatus[query.status] };
+  const subscription = useEventsSubscription();
+  return { status: connectionStatus[subscription.status] };
 }
