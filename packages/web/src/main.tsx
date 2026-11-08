@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import { UiProvider } from "@workdome/ui";
 
 import { queryClient } from "@/lib/trpc";
-import { ColorModeProvider } from "@/providers/color-mode-provider";
+import { ColorModeProvider } from "@/providers/color-mode";
 import "./index.css";
 import { routeTree } from "./routeTree.gen";
 

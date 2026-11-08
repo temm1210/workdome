@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
-import { ColorModeContext } from "@/hooks";
 import {
   applyDocumentColorMode,
   getColorModeState,
@@ -9,6 +8,8 @@ import {
   subscribeColorMode,
 } from "@/lib/color-mode";
 import type { ColorModeChoice } from "@/lib/color-mode";
+
+import { ColorModeContext } from "./color-mode-context";
 
 export type ColorModeProviderProps = { children: ReactNode };
 

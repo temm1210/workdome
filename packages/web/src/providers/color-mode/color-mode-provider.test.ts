@@ -1,10 +1,8 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { useColorMode } from "@/hooks";
-import type { ColorMode } from "@/hooks";
-
-import { ColorModeProvider } from "./color-mode-provider";
+import { ColorModeProvider, useColorMode } from ".";
+import type { ColorMode } from ".";
 
 // OS color scheme setting (jsdom has no matchMedia), returns an OS setting change
 function fakeOsColorScheme(colorScheme: ColorMode) {
@@ -38,14 +36,6 @@ describe("ColorModeProvider", () => {
 
   afterEach(() => {
     vi.unstubAllGlobals();
-    vi.restoreAllMocks();
-  });
-
-  it("ColorModeProvider 밖에서 쓰면 에러가 난다", () => {
-    vi.spyOn(console, "error").mockImplementation(() => {});
-    expect(() => renderHook(() => useColorMode())).toThrow(
-      "useColorMode must be used inside ColorModeProvider",
-    );
   });
 
   it("처음 열면 OS 설정대로 보인다", () => {

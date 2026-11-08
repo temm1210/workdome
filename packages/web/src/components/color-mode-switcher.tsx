@@ -1,8 +1,8 @@
 import { SegmentedControl } from "@workdome/ui";
 import type { SegmentedControlProps } from "@workdome/ui";
 
-import { useColorMode } from "@/hooks";
-import type { ColorModeChoice } from "@/hooks";
+import { useColorMode } from "@/providers/color-mode";
+import type { ColorModeChoice } from "@/providers/color-mode";
 
 const colorModeOptions: SegmentedControlProps<ColorModeChoice>["options"] = [
   { value: "light", label: "라이트" },
