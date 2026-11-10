@@ -9,6 +9,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:electron": "pnpm --filter @workdome/desktop dev",
     "lint": "turbo run lint && depcruise packages",
     "typecheck": "turbo run typecheck && tsc -p tsconfig.node.json",
     "test": "turbo run test",
