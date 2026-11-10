@@ -2,10 +2,13 @@ import type { ReactNode } from "react";
 import { Group, Panel, Separator } from "react-resizable-panels";
 
 import { ColorModeSwitcher } from "@/components/color-mode-switcher";
+import { ServerConnectionStatusMessage } from "@/components/server-connection-status-message";
+import { useServerConnectionStatus } from "@/providers/server-connection";
 
 export type AppLayoutProps = { children: ReactNode };
 
 export function AppLayout({ children }: AppLayoutProps) {
+  const serverConnectionStatus = useServerConnectionStatus();
   return (
     <div className="h-dvh">
       <Group orientation="horizontal">
@@ -23,7 +26,12 @@ export function AppLayout({ children }: AppLayoutProps) {
           </aside>
         </Panel>
         <Separator className="w-0.5 bg-border transition-colors data-[separator=hover]:bg-muted-foreground data-[separator=active]:bg-foreground" />
-        <Panel className="min-w-0">{children}</Panel>
+        <Panel className="relative min-w-0">
+          {children}
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <ServerConnectionStatusMessage status={serverConnectionStatus} />
+          </div>
+        </Panel>
       </Group>
     </div>
   );
