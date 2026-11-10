@@ -21,7 +21,7 @@
   --muted: var(--color-zinc-800);
   --surface: var(--color-zinc-700);
   --muted-foreground: var(--color-zinc-400);
-  --border: var(--color-zinc-700);
+  --border: color-mix(in oklab, var(--color-white) 10%, transparent);
   --primary: var(--color-zinc-200);
   --primary-foreground: var(--color-zinc-900);
 }
