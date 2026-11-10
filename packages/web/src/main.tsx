@@ -6,6 +6,7 @@ import { UiProvider } from "@workdome/ui";
 
 import { queryClient } from "@/lib/trpc";
 import { ColorModeProvider } from "@/providers/color-mode";
+import { ServerConnectionProvider } from "@/providers/server-connection";
 import "./index.css";
 import { routeTree } from "./routeTree.gen";
 
@@ -27,7 +28,9 @@ createRoot(rootElement).render(
     <UiProvider>
       <ColorModeProvider>
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
+          <ServerConnectionProvider>
+            <RouterProvider router={router} />
+          </ServerConnectionProvider>
         </QueryClientProvider>
       </ColorModeProvider>
     </UiProvider>

@@ -1,8 +1,8 @@
 import { ServerConnectionStatus } from "@/components/server-connection-status";
-import { useServerConnection } from "@/hooks";
+import { useServerConnectionStatus } from "@/providers/server-connection";
 
 export function InboxPage() {
-  const { status } = useServerConnection();
+  const status = useServerConnectionStatus();
   return (
     <>
       <h1>workdome</h1>
