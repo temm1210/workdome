@@ -1,4 +1,4 @@
 {
   "extends": "@workdome/typescript-config/config-files.json",
-  "include": ["vitest.config.ts"]
+  "include": ["vitest.config.ts", "electron.vite.config.ts"]
 }

@@ -2,7 +2,11 @@
   "name": "@workdome/desktop",
   "private": true,
   "type": "module",
+  "main": "./out/main/index.js",
   "scripts": {
+    "postinstall": "install-electron",
+    "dev": "electron-vite dev --watch",
+    "build": "electron-vite build",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.node.json",
     "lint": "oxlint",
     "test": "vitest run"
@@ -10,6 +14,9 @@
   "devDependencies": {
     "@types/node": "catalog:",
     "@workdome/typescript-config": "workspace:*",
-    "typescript": "catalog:"
+    "electron": "45.2.3",
+    "electron-vite": "6.0.0",
+    "typescript": "catalog:",
+    "vite": "catalog:"
   }
 }
