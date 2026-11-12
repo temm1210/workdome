@@ -20,6 +20,12 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "@workdome/desktop#dev": {
+      "dependsOn": ["^build"],
+      "with": ["@workdome/web#dev"],
+      "cache": false,
+      "persistent": true
     }
   }
 }

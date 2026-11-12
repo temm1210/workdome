@@ -5,7 +5,7 @@
   "main": "./out/main/index.js",
   "scripts": {
     "postinstall": "install-electron",
-    "dev": "electron-vite dev --watch",
+    "dev": "wait-on http-get://127.0.0.1:5173 && electron-vite dev --watch",
     "build": "electron-vite build",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.node.json",
     "lint": "oxlint",
@@ -13,10 +13,12 @@
   },
   "devDependencies": {
     "@types/node": "catalog:",
+    "@workdome/server": "workspace:*",
     "@workdome/typescript-config": "workspace:*",
     "electron": "45.2.3",
     "electron-vite": "6.0.0",
     "typescript": "catalog:",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "wait-on": "9.5.1"
   }
 }

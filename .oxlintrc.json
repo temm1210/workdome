@@ -52,6 +52,13 @@
       "rules": {
         "react/only-export-components": "off"
       }
+    },
+    {
+      "files": ["packages/desktop/**"],
+      "rules": {
+        "unicorn/require-post-message-target-origin": "off",
+        "import/default": "off"
+      }
     }
   ]
 }

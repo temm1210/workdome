@@ -2,7 +2,7 @@
   "extends": "@workdome/typescript-config/base.json",
   "compilerOptions": {
     "module": "nodenext",
-    "types": ["node"],
+    "types": ["node", "electron-vite/node"],
     "rootDir": "src",
     "outDir": "dist"
   },
