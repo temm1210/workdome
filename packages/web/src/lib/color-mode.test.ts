@@ -145,7 +145,7 @@ describe("applyDocumentColorMode", () => {
 });
 
 describe("subscribeColorMode", () => {
-  it("OS 설정이 바뀌면 알려준다", () => {
+  it("OS 설정이 바뀌면 listener를 부른다", () => {
     const changeOsColorScheme = fakeOsColorScheme("light");
     const listener = vi.fn();
     subscribeColorMode(listener);
@@ -153,7 +153,7 @@ describe("subscribeColorMode", () => {
     expect(listener).toHaveBeenCalledTimes(1);
   });
 
-  it("다른 창에서 색 모드를 바꾸면 알려준다", () => {
+  it("다른 창에서 색 모드를 바꾸면 listener를 부른다", () => {
     fakeOsColorScheme("light");
     const listener = vi.fn();
     subscribeColorMode(listener);
@@ -161,7 +161,7 @@ describe("subscribeColorMode", () => {
     expect(listener).toHaveBeenCalledTimes(1);
   });
 
-  it("다른 창에서 저장된 값을 모두 지우면 알려준다", () => {
+  it("다른 창에서 저장된 값을 모두 지우면 listener를 부른다", () => {
     fakeOsColorScheme("light");
     const listener = vi.fn();
     subscribeColorMode(listener);
@@ -169,7 +169,7 @@ describe("subscribeColorMode", () => {
     expect(listener).toHaveBeenCalledTimes(1);
   });
 
-  it("다른 창에서 색 모드가 아닌 값을 바꾸면 알려주지 않는다", () => {
+  it("다른 창에서 색 모드가 아닌 값을 바꾸면 listener를 부르지 않는다", () => {
     fakeOsColorScheme("light");
     const listener = vi.fn();
     subscribeColorMode(listener);
@@ -177,7 +177,7 @@ describe("subscribeColorMode", () => {
     expect(listener).not.toHaveBeenCalled();
   });
 
-  it("구독을 끊으면 더는 알려주지 않는다", () => {
+  it("구독을 끊으면 listener를 더 부르지 않는다", () => {
     const changeOsColorScheme = fakeOsColorScheme("light");
     const listener = vi.fn();
     const unsubscribe = subscribeColorMode(listener);

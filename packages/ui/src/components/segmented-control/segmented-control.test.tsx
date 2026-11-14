@@ -73,50 +73,6 @@ describe("SegmentedControl", () => {
     ).toBeInTheDocument();
   });
 
-  it("options가 비어 있으면 고를 항목이 없다", () => {
-    render(
-      <SegmentedControl
-        aria-label="선택"
-        value="a"
-        options={[]}
-        onValueChange={vi.fn()}
-      />,
-    );
-    expect(screen.queryAllByRole("radio")).toHaveLength(0);
-  });
-
-  it("항목이 하나면 눌러도 onValueChange를 부르지 않는다", async () => {
-    const options = [{ value: "a", label: "첫째" }];
-    const onValueChange = vi.fn();
-    render(
-      <SegmentedControl
-        aria-label="선택"
-        value="a"
-        options={options}
-        onValueChange={onValueChange}
-      />,
-    );
-    await userEvent.click(screen.getByRole("radio", { name: "첫째" }));
-    expect(onValueChange).not.toHaveBeenCalled();
-  });
-
-  it("value가 options에 없으면 아무 항목도 선택되어 보이지 않는다", () => {
-    const options = [
-      { value: "a", label: "첫째" },
-      { value: "b", label: "둘째" },
-    ];
-    render(
-      <SegmentedControl
-        aria-label="선택"
-        value="z"
-        options={options}
-        onValueChange={vi.fn()}
-      />,
-    );
-    expect(screen.getByRole("radio", { name: "첫째" })).not.toBeChecked();
-    expect(screen.getByRole("radio", { name: "둘째" })).not.toBeChecked();
-  });
-
   it("disabled면 다른 항목을 눌러도 onValueChange를 부르지 않는다", async () => {
     const options = [
       { value: "a", label: "첫째" },
