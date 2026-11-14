@@ -5,7 +5,7 @@ import type { ConnectionStatus } from "@/providers/server-connection";
 
 export type ServerConnectionStatusMessageProps = { status: ConnectionStatus };
 
-const message: Record<ConnectionStatus, ReactNode> = {
+const MESSAGE: Record<ConnectionStatus, ReactNode> = {
   connecting: (
     <>
       <Spinner />
@@ -21,9 +21,9 @@ export function ServerConnectionStatusMessage({
 }: ServerConnectionStatusMessageProps) {
   return (
     <div role="status">
-      {message[status] && (
+      {MESSAGE[status] && (
         <p className="flex items-center gap-2 rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm">
-          {message[status]}
+          {MESSAGE[status]}
         </p>
       )}
     </div>
