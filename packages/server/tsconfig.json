@@ -3,7 +3,6 @@
   "compilerOptions": {
     "module": "nodenext",
     "rewriteRelativeImportExtensions": true,
-    "erasableSyntaxOnly": true,
     "types": ["node"],
     "rootDir": "src",
     "outDir": "dist"
