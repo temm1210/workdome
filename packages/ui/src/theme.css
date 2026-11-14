@@ -3,31 +3,34 @@
 
 :root {
   color-scheme: light;
-  --background: var(--color-zinc-50);
+  --background: #ffffff;
+  --sidebar: #f8f8f8;
   --foreground: var(--color-zinc-800);
   --muted: var(--color-zinc-200);
   --surface: var(--color-white);
   --muted-hover: color-mix(in oklab, var(--muted), var(--surface) 50%);
   --muted-foreground: var(--color-zinc-500);
-  --border: var(--color-zinc-200);
+  --border: #e5e5e5;
   --primary: var(--color-zinc-800);
   --primary-foreground: var(--color-zinc-50);
 }
 
 .dark {
   color-scheme: dark;
-  --background: var(--color-zinc-900);
-  --foreground: var(--color-zinc-100);
-  --muted: var(--color-zinc-800);
-  --surface: var(--color-zinc-700);
-  --muted-foreground: var(--color-zinc-400);
-  --border: color-mix(in oklab, var(--color-white) 10%, transparent);
-  --primary: var(--color-zinc-200);
-  --primary-foreground: var(--color-zinc-900);
+  --background: #252525;
+  --sidebar: #1e1e1e;
+  --foreground: #cccccc;
+  --muted: #313131;
+  --surface: #3c3c3c;
+  --muted-foreground: #9d9d9d;
+  --border: #2b2b2b;
+  --primary: #cccccc;
+  --primary-foreground: #252525;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-sidebar: var(--sidebar);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-surface: var(--surface);

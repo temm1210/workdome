@@ -7,18 +7,26 @@ import { useServerConnectionStatus } from "@/providers/server-connection";
 
 export type AppLayoutProps = { children: ReactNode };
 
+// As tall as the native window buttons (0px outside the desktop app)
+function WindowDragBar() {
+  return (
+    <div className="h-[env(titlebar-area-height,0px)] border-b border-border bg-sidebar [app-region:drag]" />
+  );
+}
+
 export function AppLayout({ children }: AppLayoutProps) {
   const serverConnectionStatus = useServerConnectionStatus();
   return (
-    <div className="h-dvh">
-      <Group orientation="horizontal">
+    <div className="flex h-dvh flex-col">
+      <WindowDragBar />
+      <Group orientation="horizontal" className="min-h-0 flex-1">
         <Panel
           defaultSize="15rem"
           minSize="12rem"
           maxSize="25rem"
           groupResizeBehavior="preserve-pixel-size"
         >
-          <aside className="flex h-full flex-col">
+          <aside className="flex h-full flex-col bg-sidebar">
             <div className="shrink-0 border-b border-border p-2">
               <ColorModeSwitcher />
             </div>

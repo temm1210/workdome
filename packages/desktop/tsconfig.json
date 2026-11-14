@@ -1,10 +1,10 @@
 {
   "extends": "@workdome/typescript-config/base.json",
   "compilerOptions": {
-    "module": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "types": ["node", "electron-vite/node"],
-    "rootDir": "src",
-    "outDir": "dist"
+    "noEmit": true
   },
   "include": ["src"]
 }

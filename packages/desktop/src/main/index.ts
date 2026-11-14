@@ -1,29 +1,86 @@
-import { app, BrowserWindow, nativeTheme } from "electron";
+import { join } from "node:path";
 
-const webDevServerUrl = "http://127.0.0.1:5173";
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  nativeTheme,
+  type IpcMainEvent,
+  type NativeTheme,
+} from "electron";
 
-function createWindow() {
-  return new BrowserWindow({
+import { COLOR_MODE_CHOICE_CHANNEL } from "../shared/ipc-channels";
+
+const WEB_DEV_SERVER_URL = "http://127.0.0.1:5173";
+
+function isThemeSource(value: unknown): value is NativeTheme["themeSource"] {
+  return value === "system" || value === "light" || value === "dark";
+}
+
+function isFromPage(event: IpcMainEvent) {
+  return event.senderFrame?.origin === new URL(WEB_DEV_SERVER_URL).origin;
+}
+
+// Same values as the page theme (theme.css)
+function getWindowColors() {
+  return nativeTheme.shouldUseDarkColors
+    ? { background: "#252525", foreground: "#cccccc" }
+    : { background: "#ffffff", foreground: "#27272a" };
+}
+
+async function openMainWindow() {
+  const window = new BrowserWindow({
     width: 1280,
     height: 800,
-    backgroundColor: nativeTheme.shouldUseDarkColors ? "#18181b" : "#fafafa",
+    backgroundColor: getWindowColors().background,
+    autoHideMenuBar: true,
+    // Hides the OS title bar but keeps the native window buttons
+    titleBarStyle: "hidden",
+    titleBarOverlay: {
+      color: "#00000000",
+      symbolColor: getWindowColors().foreground,
+    },
+    // Built from src/preload/index.ts
+    webPreferences: {
+      preload: join(import.meta.dirname, "../preload/index.cjs"),
+    },
+  });
+  await window.loadURL(WEB_DEV_SERVER_URL);
+}
+
+function setThemeOnColorModeChoice() {
+  ipcMain.on(COLOR_MODE_CHOICE_CHANNEL, (event, choice: unknown) => {
+    if (isFromPage(event) && isThemeSource(choice)) {
+      nativeTheme.themeSource = choice;
+    }
+  });
+}
+
+function repaintWindowButtonsOnColorModeChange() {
+  nativeTheme.on("updated", () => {
+    // setTitleBarOverlay exists only on Windows and Linux
+    if (process.platform === "darwin") return;
+    for (const window of BrowserWindow.getAllWindows()) {
+      window.setTitleBarOverlay({ symbolColor: getWindowColors().foreground });
+    }
   });
 }
 
 // Reopen a window when the dock icon is clicked with none open (macOS only event)
-function reopenWindowOnActivate(pageUrl: string) {
+function reopenWindowOnActivate() {
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      void createWindow().loadURL(pageUrl);
+      void openMainWindow();
     }
   });
 }
 
 async function startApp() {
   await app.whenReady();
-  const window = createWindow();
-  await window.loadURL(webDevServerUrl);
-  reopenWindowOnActivate(webDevServerUrl);
+  setThemeOnColorModeChoice();
+  repaintWindowButtonsOnColorModeChange();
+  await openMainWindow();
+  reopenWindowOnActivate();
 }
 
 // Quit when all windows close, except on macOS (apps stay in the dock there)

@@ -8,6 +8,7 @@ import {
   subscribeColorMode,
 } from "@/lib/color-mode";
 import type { ColorModeChoice } from "@/lib/color-mode";
+import { notifyColorModeChoice } from "@/lib/workdome-bridge";
 
 import { ColorModeContext } from "./color-mode-context";
 
@@ -21,6 +22,10 @@ export function ColorModeProvider({ children }: ColorModeProviderProps) {
   useEffect(() => {
     applyDocumentColorMode(state.colorMode);
   }, [state.colorMode]);
+
+  useEffect(() => {
+    notifyColorModeChoice(state.colorModeChoice);
+  }, [state.colorModeChoice]);
 
   const setColorMode = (colorModeChoice: ColorModeChoice) => {
     saveColorModeChoice(colorModeChoice);

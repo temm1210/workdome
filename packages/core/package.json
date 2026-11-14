@@ -1,0 +1,17 @@
+{
+  "name": "@workdome/core",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint"
+  },
+  "devDependencies": {
+    "@workdome/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

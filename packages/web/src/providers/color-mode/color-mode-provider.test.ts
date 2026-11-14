@@ -38,7 +38,7 @@ describe("ColorModeProvider", () => {
     vi.unstubAllGlobals();
   });
 
-  it("처음 열면 OS 설정대로 보인다", () => {
+  it("설정한 색 모드가 없으면 OS 설정을 따른다", () => {
     fakeOsColorScheme("dark");
     const { result } = renderUseColorMode();
     expect(result.current.colorMode).toBe("dark");
@@ -46,8 +46,21 @@ describe("ColorModeProvider", () => {
     expect(isPageDark()).toBe(true);
   });
 
+  it("마운트되면 설정한 색 모드를 setColorModeChoice에 넘긴다", async () => {
+    fakeOsColorScheme("light");
+    const { result, unmount } = renderUseColorMode();
+    await act(async () => {
+      result.current.setColorMode("dark");
+    });
+    unmount();
+    const setColorModeChoice = vi.fn();
+    vi.stubGlobal("workdome", { setColorModeChoice });
+    renderUseColorMode();
+    expect(setColorModeChoice).toHaveBeenCalledWith("dark");
+  });
+
   describe("setColorMode", () => {
-    it("dark를 고르면 dark로 바뀐다", async () => {
+    it("dark로 설정하면 dark가 된다", async () => {
       fakeOsColorScheme("light");
       const { result } = renderUseColorMode();
       expect(result.current.colorMode).toBe("light");
@@ -60,7 +73,7 @@ describe("ColorModeProvider", () => {
       expect(isPageDark()).toBe(true);
     });
 
-    it("고른 모드는 다시 열어도 그대로다", async () => {
+    it("설정한 값은 다시 마운트해도 그대로다", async () => {
       fakeOsColorScheme("light");
       const { result, unmount } = renderUseColorMode();
       expect(result.current.colorMode).toBe("light");
@@ -74,21 +87,22 @@ describe("ColorModeProvider", () => {
       });
     });
 
-    it("한 곳에서 바꾸면 다른 곳도 같이 바뀐다", async () => {
-      fakeOsColorScheme("light");
-      const { result } = renderHook(
-        () => ({ setter: useColorMode(), reader: useColorMode() }),
-        { wrapper: ColorModeProvider },
-      );
-      expect(result.current.reader.colorMode).toBe("light");
+    it("system으로 설정하면 setColorModeChoice에 system을 넘긴다", async () => {
+      fakeOsColorScheme("dark");
+      const setColorModeChoice = vi.fn();
+      vi.stubGlobal("workdome", { setColorModeChoice });
+      const { result } = renderUseColorMode();
       await act(async () => {
-        result.current.setter.setColorMode("dark");
+        result.current.setColorMode("light");
       });
-      expect(result.current.reader.colorMode).toBe("dark");
+      await act(async () => {
+        result.current.setColorMode("system");
+      });
+      expect(setColorModeChoice).toHaveBeenLastCalledWith("system");
     });
   });
 
-  it("OS 설정이 바뀌면 따라 바뀐다", async () => {
+  it("설정한 색 모드가 없으면 OS 설정이 바뀔 때 따라 바뀐다", async () => {
     const changeOsColorScheme = fakeOsColorScheme("light");
     const { result } = renderUseColorMode();
     expect(result.current.colorMode).toBe("light");
