@@ -14,9 +14,6 @@
   "dependencies": {
     "@tanstack/react-query": "5.105.1",
     "@tanstack/react-router": "1.170.46",
-    "@trpc/client": "catalog:",
-    "@trpc/server": "catalog:",
-    "@trpc/tanstack-react-query": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-resizable-panels": "4.16.1"
@@ -33,7 +30,6 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "6.1.2",
-    "@workdome/server": "workspace:*",
     "@workdome/typescript-config": "workspace:*",
     "@workdome/ui": "workspace:*",
     "babel-plugin-react-compiler": "1.0.0",

@@ -9,7 +9,6 @@
     }
   },
   "scripts": {
-    "dev": "node --watch src/main.ts",
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.node.json",
     "lint": "oxlint",
@@ -21,8 +20,6 @@
     "typescript": "catalog:"
   },
   "dependencies": {
-    "@trpc/server": "catalog:",
-    "fastify": "5.12.7",
     "zod": "4.6.7"
   }
 }

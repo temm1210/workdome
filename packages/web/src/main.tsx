@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { UiProvider } from "@workdome/ui";
 
-import { queryClient } from "@/lib/trpc";
+import { queryClient } from "@/lib/query-client";
 import { ColorModeProvider } from "@/providers/color-mode";
 import { ServerConnectionProvider } from "@/providers/server-connection";
 import "./index.css";
