@@ -253,23 +253,14 @@ importers:
         specifier: 5.0.5
         version: 5.0.5(@types/node@26.6.5)(jsdom@30.1.3)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
 
-  packages/core:
-    devDependencies:
-      '@workdome/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      typescript:
-        specifier: 'catalog:'
-        version: 7.0.2
-
   packages/desktop:
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
-      '@workdome/core':
+      '@workdome/shared':
         specifier: workspace:*
-        version: link:../core
+        version: link:../shared
       '@workdome/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -298,6 +289,15 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
+      '@workdome/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      typescript:
+        specifier: 'catalog:'
+        version: 7.0.2
+
+  packages/shared:
+    devDependencies:
       '@workdome/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -425,9 +425,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.1.2
         version: 6.1.2(@rolldown/plugin-babel@0.2.4(@babel/core@8.1.0)(@babel/runtime@7.29.10)(rolldown@1.2.15)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(babel-plugin-react-compiler@1.0.0)(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
-      '@workdome/core':
+      '@workdome/shared':
         specifier: workspace:*
-        version: link:../core
+        version: link:../shared
       '@workdome/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

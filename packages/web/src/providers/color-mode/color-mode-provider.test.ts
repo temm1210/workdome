@@ -53,10 +53,9 @@ describe("ColorModeProvider", () => {
       result.current.setColorMode("dark");
     });
     unmount();
-    const setColorModeChoice = vi.fn();
-    vi.stubGlobal("workdome", { setColorModeChoice });
+    vi.clearAllMocks();
     renderUseColorMode();
-    expect(setColorModeChoice).toHaveBeenCalledWith("dark");
+    expect(window.workdome?.setColorModeChoice).toHaveBeenCalledWith("dark");
   });
 
   describe("setColorMode", () => {
@@ -89,8 +88,6 @@ describe("ColorModeProvider", () => {
 
     it("system으로 설정하면 setColorModeChoice에 system을 넘긴다", async () => {
       fakeOsColorScheme("dark");
-      const setColorModeChoice = vi.fn();
-      vi.stubGlobal("workdome", { setColorModeChoice });
       const { result } = renderUseColorMode();
       await act(async () => {
         result.current.setColorMode("light");
@@ -98,7 +95,9 @@ describe("ColorModeProvider", () => {
       await act(async () => {
         result.current.setColorMode("system");
       });
-      expect(setColorModeChoice).toHaveBeenLastCalledWith("system");
+      expect(window.workdome?.setColorModeChoice).toHaveBeenLastCalledWith(
+        "system",
+      );
     });
   });
 

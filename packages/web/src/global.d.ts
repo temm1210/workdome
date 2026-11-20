@@ -1,7 +1,7 @@
-import type { WorkdomeBridge } from "@workdome/core";
+import type { WorkdomeApi } from "@workdome/shared";
 
 declare global {
   interface Window {
-    workdome?: WorkdomeBridge;
+    workdome?: WorkdomeApi;
   }
 }
