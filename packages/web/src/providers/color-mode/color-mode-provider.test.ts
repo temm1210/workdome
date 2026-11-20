@@ -95,8 +95,12 @@ describe("ColorModeProvider", () => {
       await act(async () => {
         result.current.setColorMode("system");
       });
-      expect(window.workdome?.setColorModeChoice).toHaveBeenLastCalledWith(
-        "system",
+      expect(vi.mocked(window.workdome!.setColorModeChoice).mock.calls).toEqual(
+        [
+          ["system"], // mount
+          ["light"],
+          ["system"],
+        ],
       );
     });
   });
