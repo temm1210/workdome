@@ -1,6 +1,5 @@
-import { createEventBus } from "./event-bus.ts";
+import type { AppEvent } from "@workdome/shared";
 
-// App events sent to the screen (each feature adds the events it emits)
-export type AppEvent = never;
+import { createEventBus } from "./event-bus.ts";
 
 export const appEvents = createEventBus<AppEvent>();
