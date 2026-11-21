@@ -258,6 +258,9 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
+      '@workdome/server':
+        specifier: workspace:*
+        version: link:../server
       '@workdome/shared':
         specifier: workspace:*
         version: link:../shared
