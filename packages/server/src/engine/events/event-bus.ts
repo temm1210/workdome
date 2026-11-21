@@ -1,5 +1,7 @@
 import { EventEmitter, on } from "node:events";
 
+import type { AppEvent } from "@workdome/shared";
+
 export function createEventBus<Event>() {
   // No listener limit (one listener per subscriber)
   const emitter = new EventEmitter().setMaxListeners(Infinity);
@@ -20,3 +22,5 @@ export function createEventBus<Event>() {
     },
   };
 }
+
+export const eventBus = createEventBus<AppEvent>();
