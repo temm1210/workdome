@@ -52,6 +52,12 @@
       "rules": {
         "react/only-export-components": "off"
       }
+    },
+    {
+      "files": ["packages/desktop/src/main/**"],
+      "rules": {
+        "import/default": "off"
+      }
     }
   ]
 }

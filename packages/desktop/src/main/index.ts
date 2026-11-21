@@ -7,8 +7,10 @@ import {
   nativeTheme,
   type IpcMainEvent,
   type NativeTheme,
+  utilityProcess,
 } from "electron";
 
+import serverProcessPath from "../server-process/index?modulePath";
 import { COLOR_MODE_CHOICE_CHANNEL } from "../shared/ipc-channels";
 
 const WEB_DEV_SERVER_URL = "http://127.0.0.1:5173";
@@ -26,6 +28,15 @@ function getWindowColors() {
   return nativeTheme.shouldUseDarkColors
     ? { background: "#252525", foreground: "#cccccc" }
     : { background: "#ffffff", foreground: "#27272a" };
+}
+
+function startServerProcess() {
+  const serverProcess = utilityProcess.fork(serverProcessPath, [], {
+    serviceName: "workdome-server",
+  });
+  serverProcess.on("exit", (code) => {
+    if (code !== 0) console.error(`Server process exited with code ${code}`);
+  });
 }
 
 async function openMainWindow() {
@@ -77,6 +88,7 @@ function reopenWindowOnActivate() {
 
 async function startApp() {
   await app.whenReady();
+  startServerProcess();
   setThemeOnColorModeChoice();
   repaintWindowButtonsOnColorModeChange();
   await openMainWindow();
